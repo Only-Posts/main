@@ -8,6 +8,6 @@ import (
 func SetupRoutes(app *fiber.App) {
 	routes := http.GetRoutes()
 	for _, route := range routes {
-		app.Get(route.Path, route.Handler)
+		app.Add(route.Method, route.Path, route.Handler)
 	}
 }

@@ -2,11 +2,12 @@ package http
 
 import (
 	"github.com/gofiber/fiber"
+	"only-post-api/internal/endpoint"
 )
 
 const (
-	Get  = "GET"
-	Post = "POST"
+	get  = "GET"
+	post = "POST"
 )
 
 type Route struct {
@@ -18,9 +19,19 @@ type Route struct {
 func GetRoutes() []Route {
 	return []Route{
 		{
-			Method:  Get,
+			Method:  post,
+			Path:    "/user/login",
+			Handler: endpoint.PostLogin,
+		},
+		{
+			Method:  post,
+			Path:    "/user/signup",
+			Handler: endpoint.PostSignUp,
+		},
+		{
+			Method:  get,
 			Path:    "/",
-			Handler: func(ctx *fiber.Ctx) {},
+			Handler: endpoint.Main,
 		},
 	}
 }
