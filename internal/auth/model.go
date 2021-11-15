@@ -12,7 +12,7 @@ type SignUp struct {
 }
 
 type UserData struct {
-	ID       uint   `json:"id"`
+	ID       uint   `json:"id" gorm:"id"`
 	Username string `json:"username"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
