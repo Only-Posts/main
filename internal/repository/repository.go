@@ -1,7 +1,9 @@
 package repository
 
 import (
-	"github.com/jinzhu/gorm"
+	"errors"
+
+	"gorm.io/gorm"
 	"only-post-api/internal/auth"
 	"only-post-api/internal/database"
 )
@@ -12,7 +14,7 @@ func getUserByEmail(email string) (*auth.UserData, error) {
 		user auth.UserData
 	)
 	if err := db.Where(&auth.UserData{Email: email}).Find(&user).Error; err != nil {
-		if gorm.IsRecordNotFoundError(err) {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return nil, nil
 		}
 		return nil, err
