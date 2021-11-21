@@ -21,3 +21,17 @@ func getUserByEmail(email string) (*auth.UserData, error) {
 	}
 	return &user, nil
 }
+
+func getUserByUsername(username string) (*auth.UserData, error) {
+	var (
+		db   = database.DB
+		user auth.UserData
+	)
+	if err := db.Where(&auth.UserData{Username: username}).Find(&user).Error; err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return nil, nil
+		}
+		return nil, err
+	}
+	return &user, nil
+}
