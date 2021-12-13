@@ -12,7 +12,9 @@ services:
     build:
       context: .
       dockerfile: app.Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
     volumes:
       - .:/opt/app/api
-    links:
-          - "db:database"
