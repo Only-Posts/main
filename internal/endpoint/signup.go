@@ -27,7 +27,7 @@ func PostSignUp(ctx *fiber.Ctx) error {
 
 		}
 		ctx.JSON(fiber.Map{"status": "success", "message": "user already registered"})
-
+		return nil
 	}
 
 	getuser, err = repository.GetUserByUsername(user.Username)
@@ -40,7 +40,7 @@ func PostSignUp(ctx *fiber.Ctx) error {
 
 		}
 		ctx.JSON(fiber.Map{"status": "success", "message": "user already registered"})
-
+		return nil
 	}
 
 	err = repository.RegisterUser(user)

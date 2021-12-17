@@ -27,7 +27,7 @@ func PostLogin(ctx *fiber.Ctx) error {
 
 		}
 		ctx.JSON(fiber.Map{"status": "success", "message": "user login", "user_id": getuser.ID})
-
+		return nil
 	}
 
 	getuser, err = repository.GetUserByUsername(user.Username)
@@ -40,7 +40,7 @@ func PostLogin(ctx *fiber.Ctx) error {
 
 		}
 		ctx.JSON(fiber.Map{"status": "success", "message": "user login", "user_id": getuser.ID})
-
+		return nil
 	}
 
 	ctx.JSON(fiber.Map{"status": "failed", "message": "user not found"})
