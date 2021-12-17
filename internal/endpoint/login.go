@@ -14,7 +14,7 @@ func PostLogin(ctx *fiber.Ctx) error {
 	if err != nil {
 		ctx.JSON(fiber.Map{"status": "failed", "message": "failed to parse body"})
 		log.Printf("Error parse signup message err: %s\n", err)
-
+		return err
 	}
 
 	getuser, err := repository.GetUserByEmail(user.Email)
