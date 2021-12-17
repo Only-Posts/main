@@ -1,13 +1,19 @@
-name: Go
+name: Release
 
-on: [ push ]
+on:
+  push:
+    branches:
+    - master
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          submodules: true
 
       - name: Set up Go
         uses: actions/setup-go@v2
