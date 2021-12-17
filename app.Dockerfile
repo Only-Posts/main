@@ -11,6 +11,4 @@ COPY . .
 
 RUN go build -o /only-post-api cmd/main.go
 
-EXPOSE 8080
-
 CMD [ "/only-post-api", "run" ]
