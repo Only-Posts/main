@@ -11,10 +11,13 @@ import (
 
 func main() {
 	App := fiber.New()
-	err := database.InitDB()
-	if err != nil {
-		fmt.Println("Failed to connect to db")
-		return
+	for {
+		err := database.InitDB()
+		if err != nil {
+			fmt.Println("Failed to connect to db")
+		} else {
+			break
+		}
 	}
 
 	app.SetupRoutes(App)
