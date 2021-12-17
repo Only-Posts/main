@@ -1,7 +1,7 @@
 package http
 
 import (
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 	"only-post-api/internal/endpoint"
 )
 
