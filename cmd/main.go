@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
+	"log"
 
-	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2"
 	"only-post-api/internal/app"
 	"only-post-api/internal/database"
 )
@@ -17,6 +18,6 @@ func main() {
 	}
 
 	app.SetupRoutes(App)
-	App.Listen(8080)
+	log.Println(App.Listen(":8080"))
 
 }
