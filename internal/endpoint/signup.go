@@ -14,7 +14,7 @@ func PostSignUp(ctx *fiber.Ctx) error {
 	if err != nil {
 		ctx.JSON(fiber.Map{"status": "failed", "message": "failed to parse body"})
 		log.Printf("Error parse signup message err: %s\n", err)
-
+		return err
 	}
 
 	getuser, err := repository.GetUserByEmail(user.Email)
@@ -24,7 +24,7 @@ func PostSignUp(ctx *fiber.Ctx) error {
 	if getuser.Email != "" {
 		if getuser.Password != user.Password {
 			ctx.JSON(fiber.Map{"status": "failed", "message": "wrong password"})
-
+			return err
 		}
 		ctx.JSON(fiber.Map{"status": "success", "message": "user already registered"})
 		return nil
@@ -37,7 +37,7 @@ func PostSignUp(ctx *fiber.Ctx) error {
 	if getuser.Username != "" {
 		if getuser.Password != user.Password {
 			ctx.JSON(fiber.Map{"status": "failed", "message": "wrong password"})
-
+			return err
 		}
 		ctx.JSON(fiber.Map{"status": "success", "message": "user already registered"})
 		return nil
@@ -46,7 +46,7 @@ func PostSignUp(ctx *fiber.Ctx) error {
 	err = repository.RegisterUser(user)
 	if err != nil {
 		ctx.JSON(fiber.Map{"status": "failed", "message": "failed to register"})
-
+		return err
 	}
 	ctx.JSON(fiber.Map{"status": "success", "message": "user registered", "user_id": user.ID})
 	return nil
