@@ -24,7 +24,7 @@ func PostLogin(ctx *fiber.Ctx) error {
 	if getuser.Email != "" {
 		if getuser.Password != user.Password {
 			ctx.JSON(fiber.Map{"status": "failed", "message": "wrong password"})
-
+			return nil
 		}
 		ctx.JSON(fiber.Map{"status": "success", "message": "user login", "user_id": getuser.ID})
 		return nil
@@ -37,7 +37,7 @@ func PostLogin(ctx *fiber.Ctx) error {
 	if getuser.Username != "" {
 		if getuser.Password != user.Password {
 			ctx.JSON(fiber.Map{"status": "failed", "message": "wrong password"})
-
+			return nil
 		}
 		ctx.JSON(fiber.Map{"status": "success", "message": "user login", "user_id": getuser.ID})
 		return nil
